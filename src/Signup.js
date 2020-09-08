@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,8 +10,9 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import firebase from "./Firebase";
 
 function Copyright() {
     return (
@@ -49,12 +50,34 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const classes = useStyles();
 
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const [typedEmail, setTypedEmail] = useState('');
+    const [typedPassword, setTypedPassword] = useState('');
+
+    const handleSubmitRegister = (e) => {
+        console.log(typedEmail);
+        e.preventDefault();
+        auth.createUserWithEmailAndPassword(typedEmail, typedPassword)
+            .then(credential => {
+                console.log(credential);
+            })
+    }
+
+    const handleEmailChange = (event) => {
+        setTypedEmail(event.target.value)
+    }
+
+    const handlePasswordChange = (event) => {
+        setTypedPassword(event.target.value)
+    }
+
     return (
         <Container component="main" maxWidth="xs">
-            <CssBaseline />
+            <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <LockOutlinedIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign up
@@ -64,7 +87,7 @@ export default function SignUp() {
 
 
                         <Grid item xs={12}>
-                            <TextField
+                            <TextField onChange={handleEmailChange}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -75,7 +98,7 @@ export default function SignUp() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
+                            <TextField onChange={handlePasswordChange}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -88,31 +111,36 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
                                 label="I want to receive inspiration, marketing promotions and updates via email."
                             />
                         </Grid>
                     </Grid>
                     <Button
+
                         type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={handleSubmitRegister}
                     >
                         Sign Up
                     </Button>
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link href="#" variant="body2">
-                                Already have an account? Sign in
+                            <Link href="/#/login" variant="body2">
+                                {"Already have an account? Sign in"}
+                            </Link>
+                            <Link href="/#/" variant="body2">
+                                {" Go back"}
                             </Link>
                         </Grid>
                     </Grid>
                 </form>
             </div>
             <Box mt={5}>
-                <Copyright />
+                <Copyright/>
             </Box>
         </Container>
     );

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import firebase from "./Firebase";
 
 function Copyright() {
     return (
@@ -48,10 +49,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn(props) {
+    const [typedUsername,setTypedUsername] = useState('');
+    const [typedPassword,setTypedPassword] = useState('');
     const classes = useStyles();
     const handleLoginClick = (e) => {
         // e.preventDefault();
-        props.setUser('Kacper')
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        db.collection('users').get()
+            .then(snapshot => {
+                snapshot.docs.forEach(doc => {
+                    if(typedUsername===doc.data().userName && typedPassword ===doc.data().password){
+                        console.log('login this');
+                        props.setUser(typedUsername)
+                    }
+                })
+
+            })
+
+
+    }
+
+    const handleNameChange = (event) => {
+        setTypedUsername(event.target.value)
+    }
+
+    const handlePasswordChange = (event) => {
+        setTypedPassword(event.target.value)
     }
 
     return (
@@ -64,19 +88,21 @@ export default function SignIn(props) {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate >
                     <TextField
+                        onChange={handleNameChange}
                         variant="outlined"
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
+                        id="name"
+                        label="Name"
+                        name="name"
+                        autoComplete="name"
                         autoFocus
                     />
                     <TextField
+                        onChange={handlePasswordChange}
                         variant="outlined"
                         margin="normal"
                         required
@@ -108,8 +134,11 @@ export default function SignIn(props) {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="/#/register" variant="body2">
                                 {"Don't have an account? Sign Up"}
+                            </Link>
+                            <Link href="/#/" variant="body2">
+                                {" Go back"}
                             </Link>
                         </Grid>
                     </Grid>

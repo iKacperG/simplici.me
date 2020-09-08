@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -82,6 +82,7 @@ export default function PersistentDrawerLeft(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [navList,setNavList] = useState([`${props.user}`, 'Notes', 'Review', 'Logout']);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -90,6 +91,11 @@ export default function PersistentDrawerLeft(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const Logout = () => {
+        props.setUser('');
+        console.log('logout');
+    }
 
     return (
         <div className={classes.root}>
@@ -131,8 +137,9 @@ export default function PersistentDrawerLeft(props) {
                 </div>
                 <Divider/>
                 <List>
-                    {[`${props.user}`, 'Notes', 'Review', 'Logout'].map((text, index) => (
-                        <ListItem button key={text}>
+
+                    {navList.map((text, index) => (
+                        <ListItem button key={text} >
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
                             <ListItemText primary={text}/>
                         </ListItem>

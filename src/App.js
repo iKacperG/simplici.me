@@ -19,14 +19,7 @@ import CreateNew from "./createNew";
 
 
 function App() {
-    const db = firebase.firestore();
-    db.collection('test').get()
-        .then(snapshot => {
-            snapshot.docs.forEach(doc => {
-                console.log(doc.data());
-            })
 
-        })
 
     const [convSize, setConvSize] = useState('100');
     const [keywordsFocus, setKeywordsFocus] = useState('50');
