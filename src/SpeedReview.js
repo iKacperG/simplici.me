@@ -40,6 +40,7 @@ export default class SpeedReview extends Component {
 
 
     handleProcessing = () => {
+
         //-----------------------------Main text length * user pref
         let afterDates;
         let shrinkedByWidth;

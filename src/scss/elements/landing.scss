@@ -1,0 +1,48 @@
+
+
+.landing-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width:100%;
+  height:100vh;
+  background: url(/reminder-791271_1920.jpg);
+}
+
+.landing-stop{
+  width:70%;
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button-group{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo-group{
+  display: flex;
+}
+.logo{
+  color: #7dc66d;
+  text-shadow: -1px 0 #3f583b, 0 1px #3f583b, 1px 0 #3f583b, 0 -1px #3f583b;
+  font-size:5rem;
+}
+
+.logo-me{
+  color: #ffffff;
+  text-shadow: -1px 0 #3f583b, 0 1px #3f583b, 1px 0 #3f583b, 0 -1px #3f583b;
+  font-size:5rem;
+}
+
+.btn{
+  width:100%;
+  height:100%;
+}
