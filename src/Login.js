@@ -14,13 +14,15 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import firebase from "./Firebase";
+import { useHistory } from "react-router-dom";
+
 
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+                simplici.me
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -51,21 +53,27 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn(props) {
     const [typedUsername,setTypedUsername] = useState('');
     const [typedPassword,setTypedPassword] = useState('');
+    let history = useHistory();
     const classes = useStyles();
     const handleLoginClick = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         const auth = firebase.auth();
         const db = firebase.firestore();
-        db.collection('users').get()
-            .then(snapshot => {
-                snapshot.docs.forEach(doc => {
-                    if(typedUsername===doc.data().userName && typedPassword ===doc.data().password){
-                        console.log('login this');
-                        props.setUser(typedUsername)
-                    }
-                })
 
-            })
+
+
+        auth.signInWithEmailAndPassword(typedUsername, typedPassword)
+            .then(auth.onAuthStateChanged(function(user) {
+            if (user) {
+                history.push("/changepath");
+               let name = user.displayName;
+               let email = user.email;
+                console.log(email +'userlogged');
+            } else {
+                console.log("wrong email or password")
+                console.log('fail');
+            }
+        }))
 
 
     }
@@ -88,7 +96,7 @@ export default function SignIn(props) {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate >
+                <form className={classes.form} noValidate onSubmit={handleLoginClick} >
                     <TextField
                         onChange={handleNameChange}
                         variant="outlined"
@@ -117,8 +125,7 @@ export default function SignIn(props) {
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
                     />
-                    <Button onClick={handleLoginClick}
-                        href="/#/changepath"
+                    <Button
                         type="submit"
                         fullWidth
                         variant="contained"

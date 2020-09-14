@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -14,6 +14,8 @@ export default class SpeedReview extends Component {
             textValue: [],
             processedValue: '',
             keywords: [],
+            display: 'none',
+            buttonDisplay: 'none',
 
         };
     }
@@ -25,7 +27,6 @@ export default class SpeedReview extends Component {
             textValue: tmp,
         })
 
-        console.log(this.state.textValue);
 
     }
     handleKeywordsChange = (e) => {
@@ -34,7 +35,6 @@ export default class SpeedReview extends Component {
             keywords: e.target.value.split(','),
         })
 
-        console.log(this.state.textValue);
 
     }
 
@@ -50,30 +50,58 @@ export default class SpeedReview extends Component {
         const arrayOfImportance = this.state.textValue.filter((element) => {
             return (this.state.keywords.some(r => element.indexOf(r) >= 0))
         })
-
+        console.log(this.state.textValue + 'textValue')
+        console.log(arrayOfImportance + 'arrayOf');
         //--------------------------------DATES----------------------------------------------
-
+        let result;
         afterDates = [...arrayOfImportance];
-        if (arrayOfImportance.length < necessaryText) {
+        if (arrayOfImportance.length !== 0 && arrayOfImportance.length < necessaryText) {
+            console.log(arrayOfImportance.length+'length');
             const regexp = /\d{4} /
-            const result = this.state.textValue.filter(element => {
+            result = this.state.textValue.filter(element => {
                 return regexp.test(element)
 
             })
 
-            afterDates = [...arrayOfImportance, ...result]
-            console.log(afterDates);
+            afterDates = [...arrayOfImportance, ...result];
+
         }
+        else if(arrayOfImportance.length===0){
+            console.log(arrayOfImportance.length+'length');
+            console.log('stillhere');
+                result = this.state.textValue;
+                afterDates = [...arrayOfImportance, ...result];
+            }
+
 
         shrinkedByWidth = afterDates.slice(0, necessaryText)
 
         this.setState({
-
-            processedValue: shrinkedByWidth
-
-
+            processedValue: shrinkedByWidth,
+            display: 'flex',
         })
-        console.log(shrinkedByWidth);
+
+
+    }
+    handleClear = () => {
+        this.setState({
+            display: 'none',
+            processedValue: '',
+        })
+    }
+    handleMinimize = () => {
+
+        if (this.state.display === 'flex' && this.state.processedValue !== '') {
+            this.setState({
+                display: 'none',
+                buttonDisplay: 'flex',
+            });
+        } else if (this.state.display === 'none' && this.state.processedValue !== '') {
+            this.setState({
+                display: 'flex',
+                buttonDisplay: 'none',
+            })
+        }
     }
 
     render() {
@@ -112,28 +140,57 @@ export default class SpeedReview extends Component {
                            }}
                 />
             </form>
-            <Button
-                onClick={this.handleProcessing}
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<SaveIcon/>}
-            >
-                Process
-            </Button>
+            <div className="button-group">
+                <Button
+                    onClick={this.handleProcessing}
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    startIcon={<SaveIcon/>}
+                >
+                    Process
+                </Button>
+                <Button
+                    onClick={this.handleMinimize}
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    startIcon={<SaveIcon/>}
+                    style={{
+                        display: this.state.buttonDisplay,
+                    }}
+                >
+                    Maximize
+                </Button>
+            </div>
+
             <Container fixed maxWidth="sm">
 
-                <Typography component="div" style={{
-                    backgroundColor: '#ac1c32',
-                    color: 'white',
-                    fontFamily: `'Roboto Mono', monospace`,
-                    height: `45vh`,
-                    overflow: `auto`,
-                    overflowWrap: `break-word`,
-                    borderRadius: `1%`,
-                    border: `5px solid #ac1c32`
+                <Typography component="div" className="result" style={{
+                    display: this.state.display,
                 }}>
-                    {this.state.processedValue}</Typography>
+                    {this.state.processedValue}
+                    <div className="button-group">
+                        <Button
+                            onClick={this.handleMinimize}
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            startIcon={<SaveIcon/>}
+                        >
+                            Minimize
+                        </Button>
+                        <Button
+                            onClick={this.handleClear}
+                            variant="contained"
+                            color="primary"
+                            size="large"
+                            startIcon={<SaveIcon/>}
+                        >
+                            Clear
+                        </Button>
+                    </div>
+                </Typography>
             </Container>
 
         </>

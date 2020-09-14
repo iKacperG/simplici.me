@@ -25,11 +25,14 @@ export default class ChangePath extends Component {
                     boxSizing: `border-box`,
                     width: `90%`,
                     height: `100%`,
-
                 }}>
+
                     <MenuBookIcon
                         width={`50%`}
-                        style={{width: `50%`, height: `90vh`}}/>
+                        style={{
+                            width: `50%`,
+                            height: `90vh`}}
+                    />
                 </Fab>
             </div>
             <div
@@ -44,11 +47,14 @@ export default class ChangePath extends Component {
                     boxSizing: `border-box`,
                     width: `90%`,
                     height: `100%`,
-
                 }}>
+
                     <CreateIcon
                         width={`50%`}
-                        style={{width: `50%`, height: `50%`}}/>
+                        style={{
+                            width: `50%`,
+                            height: `50%`
+                        }}/>
                 </Fab>
             </div>
         </div>

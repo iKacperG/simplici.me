@@ -18,6 +18,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import CustomTextField from "./CustomTextField";
+import {Link} from "react-router-dom";
+
+
 
 const drawerWidth = 240;
 
@@ -139,10 +142,12 @@ export default function PersistentDrawerLeft(props) {
                 <List>
 
                     {navList.map((text, index) => (
+                        <Link to={`/createNew/${text}`}>
                         <ListItem button key={text} >
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
                             <ListItemText primary={text}/>
                         </ListItem>
+                        </Link>
                     ))}
                 </List>
 

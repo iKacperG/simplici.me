@@ -1,0 +1,19 @@
+div.result {
+  position:absolute;
+  top:0;
+  left:0;
+  z-index: 2;
+
+  margin:0 5%;
+  background-color: white;
+  color: #000;
+  font-family: 'Roboto Mono', monospace;
+  height: 75%;
+  width:90%;
+  overflow: auto;
+  overflow-wrap: break-word;
+  border-radius: 1%;
+  border: 5px solid #ac1c32;
+
+
+}

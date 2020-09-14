@@ -16,6 +16,9 @@ import firebase from "./Firebase";
 import SignIn from "./Login";
 import SignUp from "./Signup";
 import CreateNew from "./createNew";
+import Logout from "./Logout";
+import Notes from "./Notes";
+import {AuthProvider} from "./Auth";
 
 
 function App() {
@@ -25,10 +28,12 @@ function App() {
     const [keywordsFocus, setKeywordsFocus] = useState('50');
     const [userName, setUserName] = useState('')
 
+
     return (
         <div className="App">
             <HashRouter>
                 <>
+                    <AuthProvider>
                     <Route exact path='/' component={Landing}/>
                     <Route exact path='/changepath' render={(props) => <ChangePath
                         user={userName}
@@ -49,6 +54,12 @@ function App() {
                         setUser={setUserName}/>
                            }/>
                     <Route path='/register' component={SignUp}/>
+                    <Route exact path='/createnew/Logout' render={(props) => <Logout
+                        user={userName}
+                        setUser={setUserName}/>
+                    }/>
+                    <Route path='/createnew/Notes' component={Notes}/>
+                    </AuthProvider>
                 </>
             </HashRouter>
 

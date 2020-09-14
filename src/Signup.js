@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import firebase from "./Firebase";
+import { useHistory } from "react-router-dom";
+
 
 function Copyright() {
     return (
@@ -49,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
     const classes = useStyles();
+    const history = useHistory();
+
 
     const auth = firebase.auth();
     const db = firebase.firestore();
@@ -59,8 +63,8 @@ export default function SignUp() {
         console.log(typedEmail);
         e.preventDefault();
         auth.createUserWithEmailAndPassword(typedEmail, typedPassword)
-            .then(credential => {
-                console.log(credential);
+            .then(() => {
+                history.push("/");
             })
     }
 
@@ -82,7 +86,7 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={handleSubmitRegister}>
                     <Grid container spacing={2}>
 
 
@@ -123,7 +127,7 @@ export default function SignUp() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={handleSubmitRegister}
+
                     >
                         Sign Up
                     </Button>

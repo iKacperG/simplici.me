@@ -12,10 +12,10 @@ import firebase from "firebase";
         measurementId: "G-YH0KNMZR7B"
     };
 // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+   export const app = firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     const db = firebase.firestore();
     db.settings({timestampsInSnapshots: true})
 
 
-export default firebase;
+export default app;
