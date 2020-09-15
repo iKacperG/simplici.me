@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import firebase from "./Firebase";
+import firebase from "../Auths/Firebase";
 import PersistentDrawerLeft from "./Bar";
 import { withStyles } from '@material-ui/styles';
 

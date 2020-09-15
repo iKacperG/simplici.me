@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import PersistentDrawerLeft from "./Bar";
-import firebase from "./Firebase";
+import PersistentDrawerLeft from "../Write/Bar";
+import firebase from "../Auths/Firebase";
 
 const NoteGallery = (props) => {
     let [userNotes, setUserNotes] = useState([])

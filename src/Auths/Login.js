@@ -56,10 +56,7 @@ export default function SignIn(props) {
     let history = useHistory();
     const classes = useStyles();
 
-    if (props.user !== '') {
-        console.log(props.user);
-        history.push('/changepath');
-    }
+
 
     const handleLoginClick = (e) => {
         e.preventDefault();
@@ -68,22 +65,24 @@ export default function SignIn(props) {
 
 
         auth.signInWithEmailAndPassword(typedUsername, typedPassword)
-            .then(auth.onAuthStateChanged(function (user) {
+            .then(()=> {auth.onAuthStateChanged(function (user) {
                 if (user) {
+
                     // let emailProceeded = [user.email]
                     // let displayValue = emailProceeded.slice(emailProceeded.indexOf('@'),emailProceeded.length);
                     // user.displayName=displayValue.toString();
                     props.setUser(user);
                     history.push("/changepath");
-                    let name = user.displayName;
-                    let email = user.email;
                     console.log(user + 'userlogged');
 
                 } else {
+
+                    console.log(typedUsername)
+
                     console.log("wrong email or password")
                     console.log('fail');
                 }
-            }))
+            })})
 
 
     }

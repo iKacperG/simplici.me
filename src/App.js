@@ -6,15 +6,15 @@ import {
     Route,
 } from 'react-router-dom';
 
-import ChangePath from "./ChangePath";
-import SpeedReview from "./SpeedReview";
-import Landing from "./Landing";
-import SignIn from "./Login";
-import SignUp from "./Signup";
-import CreateNew from "./createNew";
-import Logout from "./Logout";
-import Notes from "./Notes";
-import {AuthProvider} from "./Auth";
+import ChangePath from "./Choose/ChangePath";
+import SpeedReview from "./Review/SpeedReview";
+import Landing from "./Landing/Landing";
+import SignIn from "./Auths/Login";
+import SignUp from "./Auths/Signup";
+import CreateNew from "./Write/createNew";
+import Logout from "./Auths/Logout";
+import Notes from "./Write/Notes";
+import {AuthProvider} from "./Auths/Auth";
 
 
 function App() {

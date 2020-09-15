@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Logo from './images/logo.svg';
+import Logo from '../images/logo.svg';
 
-import './scss/main.scss'
+import '../scss/main.scss'
 import Typography from "@material-ui/core/Typography";
 
 const Landing = () => {

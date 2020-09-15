@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/SaveRounded";
-import firebase from "./Firebase";
+import firebase from "../Auths/Firebase";
 
 const SaveButton = (props) => {
     const db = firebase.firestore();
@@ -9,18 +9,20 @@ const SaveButton = (props) => {
 
 
     const handleSaving = () => {
-        auth.onAuthStateChanged(function (user) {
+        let userNotes;
 
-            if (user) {
 
-                let currentUserObject = db.collection('users').doc(user.uid);
+                let currentUserObject = db.collection('users').doc(auth.currentUser.uid);
+
 
                 currentUserObject.get()
-                    .then(doc => {
-                        return doc.data().note
+                    .then(res => {
+                        console.log(res.data().note + 'datanote');
+                        return res.data().note
 
                     })
                     .then(res => {
+                        console.log(res + 'res');
                         currentUserObject.update({
                             note: [...res, props.actualNote]
                         })
@@ -29,8 +31,7 @@ const SaveButton = (props) => {
                     })
                     .catch(err => err + " error");
             }
-        })
-    }
+
 
     return (
         <div className="button-group-review">
@@ -39,9 +40,11 @@ const SaveButton = (props) => {
                 variant="contained"
                 color="primary"
                 size="large"
-                startIcon={<SaveIcon/>}>
+                startIcon={<SaveIcon/>}
+            >
                 Save to cloud
             </Button>
+
         </div>
     )
 }

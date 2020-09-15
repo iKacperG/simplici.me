@@ -64,6 +64,7 @@ export default function SignUp(props) {
         e.preventDefault();
         auth.createUserWithEmailAndPassword(typedEmail, typedPassword)
             .then(() => {
+                db.collection('users').doc(auth.currentUser.uid).set({note:''}).catch(err=>err);
                 history.push("/");
             })
     }

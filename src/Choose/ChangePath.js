@@ -3,7 +3,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import CreateIcon from '@material-ui/icons/Create';
 import {width} from '@material-ui/system';
 import {Fab} from '@material-ui/core';
-import './scss/main.scss';
+import '../scss/main.scss';
 
 export default class ChangePath extends Component {
     constructor(props) {
