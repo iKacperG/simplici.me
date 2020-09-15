@@ -10,9 +10,9 @@ const Landing = () => {
     return(
         <div className="landing-container">
             <div className="landing-stop">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/kmTECF0JZyQ" frameBorder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen/>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/fRCFLfXeWQE" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen/>
                     <div className='button-group'>
             <Button className="btn" href="#/login" variant="contained">Log in</Button>
             <Button className="btn" href="#/register" variant="contained">Register</Button>
