@@ -16,8 +16,8 @@ export default class ChangePath extends Component {
         return <div className="changepath-container">
             <div className="changepath-center">
                 <Fab
-                    color="primary"
-                    href="/#/SpeedReview"
+                    className="change-button"
+                    href="/#/Review"
                     aria-label="add"
                     size="large"
                     variant="extended"
@@ -38,10 +38,10 @@ export default class ChangePath extends Component {
             <div
                 className="changepath-center">
                 <Fab
-                    color="primary"
+                   className="change-button"
                     aria-label="add"
                     size="large"
-                    href="/#/createnew"
+                    href="/#/CreateNew"
                     variant="extended"
                     style={{
                     boxSizing: `border-box`,

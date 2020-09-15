@@ -21,7 +21,7 @@ function Copyright() {
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+                simplici.me
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
     const classes = useStyles();
     const history = useHistory();
 
@@ -77,7 +77,8 @@ export default function SignUp() {
     }
 
     return (
-        <Container component="main" maxWidth="xs">
+        <div className="landing-container">
+        <Container component="main" maxWidth="xs" className="login-register-form">
             <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -147,5 +148,6 @@ export default function SignUp() {
                 <Copyright/>
             </Box>
         </Container>
+        </div>
     );
 }

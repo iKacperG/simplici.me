@@ -19,7 +19,8 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import CustomTextField from "./CustomTextField";
 import {Link} from "react-router-dom";
-
+import TextField from "@material-ui/core/TextField";
+import SaveButton from "./SaveButton";
 
 
 const drawerWidth = 240;
@@ -84,9 +85,10 @@ const useStyles = makeStyles((theme) => ({
 export default function PersistentDrawerLeft(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
-    const [navList,setNavList] = useState([`${props.user}`, 'Notes', 'Review', 'Logout']);
 
+    const [open, setOpen] = React.useState(false);
+    const [navList, setNavList] = useState([`${props.user.email}`,'CreateNew', 'Notes', 'Review', 'Logout']);
+    const [user,setUser] = useState(props.user);
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -95,10 +97,6 @@ export default function PersistentDrawerLeft(props) {
         setOpen(false);
     };
 
-    const Logout = () => {
-        props.setUser('');
-        console.log('logout');
-    }
 
     return (
         <div className={classes.root}>
@@ -142,11 +140,11 @@ export default function PersistentDrawerLeft(props) {
                 <List>
 
                     {navList.map((text, index) => (
-                        <Link to={`/createNew/${text}`}>
-                        <ListItem button key={text} >
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                            <ListItemText primary={text}/>
-                        </ListItem>
+                        <Link to={`/${text}`}>
+                            <ListItem button key={text}>
+                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                                <ListItemText primary={text}/>
+                            </ListItem>
                         </Link>
                     ))}
                 </List>
@@ -159,11 +157,9 @@ export default function PersistentDrawerLeft(props) {
                 })}
             >
                 <div className={classes.drawerHeader}/>
-                <Typography paragraph>
-                    <CustomTextField/>
-                </Typography>
-                <Typography paragraph>
 
+                <Typography paragraph>
+                    {props.actualContent}
                 </Typography>
             </main>
         </div>

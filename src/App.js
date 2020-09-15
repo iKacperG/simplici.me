@@ -4,15 +4,11 @@ import './App.css';
 import {
     HashRouter,
     Route,
-    Link,
-    Switch,
-    NavLink,
 } from 'react-router-dom';
 
 import ChangePath from "./ChangePath";
 import SpeedReview from "./SpeedReview";
 import Landing from "./Landing";
-import firebase from "./Firebase";
 import SignIn from "./Login";
 import SignUp from "./Signup";
 import CreateNew from "./createNew";
@@ -26,8 +22,8 @@ function App() {
 
     const [convSize, setConvSize] = useState('100');
     const [keywordsFocus, setKeywordsFocus] = useState('50');
-    const [userName, setUserName] = useState('')
-
+    const [userName, setUserName] = useState({});
+    const [actualNote,setActualNote] = useState('');
 
     return (
         <div className="App">
@@ -39,26 +35,34 @@ function App() {
                         user={userName}
                         setUser={setUserName}/>
                     }/>
-                    <Route exact path='/createnew'
+                    <Route exact path='/CreateNew'
                            render={(props) => <CreateNew
                                user={userName}
-                               setUser={setUserName}/>
+                               setUser={setUserName}
+                               actualNote={actualNote}
+                               setActualNote={setActualNote}/>
+
                            }/>
-                    <Route exact path='/SpeedReview' render={(props) => <SpeedReview
+                    <Route exact path='/Review' render={(props) => <SpeedReview
                         convSize={convSize}
                         setConvSize={setConvSize}
                         keywordsFocus={keywordsFocus}
                         setKeywordsFocus={setKeywordsFocus}/>}/>
+
                     <Route path='/login' render={(props) => <SignIn
                         user={userName}
                         setUser={setUserName}/>
                            }/>
+
                     <Route path='/register' component={SignUp}/>
-                    <Route exact path='/createnew/Logout' render={(props) => <Logout
+
+                    <Route exact path='/Logout' render={(props) => <Logout
                         user={userName}
                         setUser={setUserName}/>
                     }/>
-                    <Route path='/createnew/Notes' component={Notes}/>
+
+                    <Route path='/Notes' component={Notes}/>
+
                     </AuthProvider>
                 </>
             </HashRouter>

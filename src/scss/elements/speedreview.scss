@@ -8,12 +8,15 @@ div.result {
   background-color: white;
   color: #000;
   font-family: 'Roboto Mono', monospace;
-  height: 75%;
-  width:90%;
+
   overflow: auto;
   overflow-wrap: break-word;
   border-radius: 1%;
   border: 5px solid #ac1c32;
 
 
+}
+
+.review-container{
+  background: url("/whiteboard.jpg")center/cover;
 }

@@ -15,8 +15,7 @@ const Landing = () => {
                     allowFullScreen/>
                     <div className='button-group'>
             <Button className="btn" href="#/login" variant="contained">Log in</Button>
-            <Button href="#/register" variant="contained" color="primary">Register</Button>
-
+            <Button className="btn" href="#/register" variant="contained">Register</Button>
 
                     </div>
                 <div className="logo-group">

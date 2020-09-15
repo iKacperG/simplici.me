@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/SaveRounded"
 import ReviewSlider from "./ReviewSlider";
+import NoteGallery from "./NoteGallery";
 
 
 export default class SpeedReview extends Component {
@@ -69,9 +70,9 @@ export default class SpeedReview extends Component {
         else if(arrayOfImportance.length===0){
             console.log(arrayOfImportance.length+'length');
             console.log('stillhere');
-                result = this.state.textValue;
-                afterDates = [...arrayOfImportance, ...result];
-            }
+            result = this.state.textValue;
+            afterDates = [...arrayOfImportance, ...result];
+        }
 
 
         shrinkedByWidth = afterDates.slice(0, necessaryText)
@@ -105,7 +106,17 @@ export default class SpeedReview extends Component {
     }
 
     render() {
-        return <>
+        return <div className="review-container">
+            <NoteGallery/>
+            <Button
+                href="/#/CreateNew"
+                variant="contained"
+                color="primary"
+                size="large"
+                startIcon={<SaveIcon/>}
+            >
+                Note writing screen
+            </Button>
             <ReviewSlider name="Converted Size" startValue={this.props.convSize}
                           setStartValue={this.props.setConvSize}/>
             <ReviewSlider name="Keywords Focus" startValue={this.props.keywordsFocus}
@@ -140,7 +151,7 @@ export default class SpeedReview extends Component {
                            }}
                 />
             </form>
-            <div className="button-group">
+            <div className="button-group-review">
                 <Button
                     onClick={this.handleProcessing}
                     variant="contained"
@@ -193,7 +204,7 @@ export default class SpeedReview extends Component {
                 </Typography>
             </Container>
 
-        </>
+        </div>
 
     }
 }

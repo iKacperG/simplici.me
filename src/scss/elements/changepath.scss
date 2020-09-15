@@ -1,6 +1,6 @@
 .changepath-container {
   display: flex;
-  background: url(/technology-792180_1920.jpg);
+  background: url(/bba3.jpg)no-repeat center/cover;
   height:100vh;
   justify-content: center;
   align-items: center;
@@ -10,8 +10,11 @@
   height: 50%;
 
 }
-
+.change-button{
+  background:url("/papercard.jpg");
+}
 .change-icon{
+
   width:100%;
   height:100vh;
 }
