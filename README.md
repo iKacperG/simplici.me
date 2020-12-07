@@ -9,7 +9,7 @@
 
 ## technologies
 
-React
-Sass
-Firebase
-Material UI
+> React
+> Sass
+> Firebase
+> Material UI
