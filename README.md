@@ -10,7 +10,7 @@
 ## technologies
 
 > React</br>
-> Sass</br>  
-> Firebase</br>  
+> Sass</br>
+> Firebase</br>
 > Material UI</br>
  
