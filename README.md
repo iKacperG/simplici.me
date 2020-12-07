@@ -1,5 +1,9 @@
 # simplici.me
 
+## what is this project about
+
+Efficient creation of notes accelerating learning
+
 ## how to install
 
 1. Install node.js -> it will automatically install npm
@@ -14,3 +18,6 @@
 > Firebase</br>
 > Material UI</br>
  
+## goal
+
+To learn basics of Firebase and MUI
