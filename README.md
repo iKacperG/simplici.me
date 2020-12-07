@@ -9,5 +9,8 @@
 
 ## technologies
 
-> React  > Sass  > Firebase  > Material UI
+> React</br>
+> Sass</br>  
+> Firebase</br>  
+> Material UI</br>
  
